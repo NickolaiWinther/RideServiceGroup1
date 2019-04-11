@@ -11,6 +11,13 @@ namespace RideServiceGroup1.Entities
         public RideCategory Category { get; set; }
         public Status Status { get; }
         public List<Report> Reports { get; set; }
+        public string Url
+        {
+            get
+            {
+                return $"Img/{Name.ToLower()}.jpg";
+            }
+        }
 
         public int NumbersOfShutdowns()
         {

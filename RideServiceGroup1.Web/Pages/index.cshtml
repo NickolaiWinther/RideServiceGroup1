@@ -1,0 +1,58 @@
+﻿@page
+@using RideServiceGroup1.Entities;
+@model RideServiceGroup1.Web.Pages.indexModel
+@{
+    ViewData["Title"] = "index";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+}
+
+<h1>Fårup sommerland</h1>
+<div class="wrapper">
+    <article>
+        <div class="rideWrapper">
+            <a href="/">
+                <div class="rides">
+                    <h2>Hvirvelvinden</h2>
+                    <img src="~/Img/hvirvelvinden.jpg" alt="hvirvelvinden" />
+                    <p><i class="fas fa-dot-circle broken"></i>I stykker</p>
+                </div>
+            </a>
+            <a href="/">
+                <div class="rides">
+                    <h2>Hvirvelvinden</h2>
+                    <img src="~/Img/hvirvelvinden.jpg" alt="hvirvelvinden" />
+                    <p><i class="fas fa-dot-circle beingRepaired"></i>Bliver lavet</p>
+                </div>
+            </a>
+            @for (int i = 0; i < 4; i++)
+            {
+                <a>
+                    <div class="rides">
+                        <h2>Hvirvelvinden</h2>
+                        <img src="~/Img/hvirvelvinden.jpg" alt="hvirvelvinden" />
+                        <p><i class="fas fa-dot-circle working"></i>Virker</p>
+                    </div>
+                </a>
+            }
+            @foreach (Ride ride in Model.Rides)
+            {
+                <a>
+                    <div class="rides">
+                        <h2>@ride.Name</h2>
+                        <img src="@ride.Url" alt="@ride.Name" />
+                        <p><i class="fas fa-dot-circle working"></i>Virker</p>
+                    </div>
+                </a>
+            }
+
+            @*@foreach (MemeImage memeImage in Model.MemeImages)
+        {
+            <div class="memeSelector">
+                <img src="@memeImage.Url" alt="@memeImage.AltText" />
+                <input type="radio" name="imageSelected" value="@memeImage.Id" required />
+            </div>
+        }*@
+        </div>
+    </article>
+</div>
+

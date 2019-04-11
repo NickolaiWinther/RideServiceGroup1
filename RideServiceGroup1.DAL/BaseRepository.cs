@@ -13,9 +13,9 @@ namespace RideServiceGroup1.DAL
         /// Needs a connection string for the connection.
         /// </summary>
         /// <param name="conString">Connection string to the database</param>
-        public BaseRepository(string conString)
+        public BaseRepository()
         {
-            connectionString = conString;
+            connectionString = @"Data Source=cvdb3,1477;Initial Catalog=RideServiceGroup1;Integrated Security=True;";
         }
 
         /// <summary>

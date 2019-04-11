@@ -8,7 +8,7 @@ namespace RideServiceGroup1.Entities
         {
             Working = 0,
             Broken = 1,
-            BeingRepaird = 2
+            BeingRepaired = 2
         }
     }
 }

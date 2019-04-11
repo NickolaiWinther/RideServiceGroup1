@@ -1,0 +1,139 @@
+﻿/* Variabler */
+body {
+    margin: 0;
+    background-color: #202020;
+}
+
+/* Typografi */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Raleway', sans-serif;
+    text-align: center;
+    color: white;
+}
+
+h3 {
+    font-size: 3rem;
+    font-weight: 300;
+}
+
+h4 {
+    font-size: 1.6rem;
+}
+
+p {
+    color: grey;
+}
+
+p, a {
+    font-family: 'Roboto Slab', serif;
+}
+
+/* Hero */
+.hero {
+    background-image: url("../img/hero.jpg");
+    background-size: cover;
+    background-position: center center;
+    width: 100vw;
+    max-width: 100%;
+    height: 400px;
+}
+
+    .hero header {
+        display: flex;
+        justify-content: space-between;
+        background: rgba(255, 255, 255, 0.5);
+    }
+
+        .hero header img {
+            position: relative;
+            top: 60px;
+            left: 60px;
+        }
+
+        .hero header .navbar {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+            .hero header .navbar nav ul {
+                display: flex;
+                padding: 0;
+                list-style: none;
+            }
+
+                .hero header .navbar nav ul li {
+                    padding: 0 3vw;
+                    font-weight: bold;
+                }
+
+                    .hero header .navbar nav ul li a {
+                        color: black;
+                        text-decoration: none;
+                    }
+
+section h1 {
+    font-size: 3rem;
+    color: white;
+}
+
+section .wrapper {
+    display: flex;
+}
+
+
+    section .wrapper article {
+        padding: 2%;
+        width: 96%;
+    }
+
+        section .wrapper article .rideWrapper {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 5px;
+            padding-bottom: 20px;
+        }
+            section .wrapper article .rideWrapper a{
+                margin: 30px;
+                text-decoration: none;
+            }
+
+
+                section .wrapper article .rideWrapper a .rides i {
+                    padding: 0 10px;
+                }
+
+                    section .wrapper article .rideWrapper a .rides i.working {
+                        color: limegreen;
+                    }
+
+                    section .wrapper article .rideWrapper a .rides i.broken {
+                        color: red;
+                    }
+
+                    section .wrapper article .rideWrapper a .rides i.beingRepaired {
+                        color: orange;
+                    }
+
+                section .wrapper article .rideWrapper a .rides img {
+                    height: 400px;
+                }
+
+
+
+@media screen and (max-width: 900px) {
+    .classic .wrapper {
+        flex-wrap: wrap;
+    }
+
+        .classic .wrapper article {
+            width: 48%;
+        }
+}
+
+h4 a {
+    color: white;
+}
+
+/*# sourceMappingURL=style.css.map */
