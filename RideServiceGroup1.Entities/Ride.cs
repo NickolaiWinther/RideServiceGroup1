@@ -18,6 +18,10 @@ namespace RideServiceGroup1.Entities
                 return $"Img/{Name.ToLower()}.jpg";
             }
         }
+        public Ride()
+        {
+
+        }
 
         public int NumbersOfShutdowns()
         {
