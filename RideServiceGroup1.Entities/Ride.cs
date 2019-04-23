@@ -13,7 +13,7 @@ namespace RideServiceGroup1.Entities
         public RideCategory Category { get; set; }
         public Status Status
         {
-            get => Reports.OrderByDescending(x => x.ReportTime).FirstOrDefault().Status;
+            get => /*Reports.OrderByDescending(x => x.ReportTime).FirstOrDefault().Status;*/ throw new NotImplementedException();
         }
         public List<Report> Reports { get; set; }
         public string Url
