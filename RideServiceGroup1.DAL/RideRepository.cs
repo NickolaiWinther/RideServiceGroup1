@@ -11,9 +11,8 @@ namespace RideServiceGroup1.DAL
         public List<Ride> GetAllRides()
         {
             List<Ride> rides = new List<Ride>();
-
             DataTable rideTable = ExecuteQuery("SELECT * FROM Rides");
-
+            
             foreach (DataRow row in rideTable.Rows)
             {
                 RideCategory rideCategory = new RideCategory((int)row["CategoryId"]);
