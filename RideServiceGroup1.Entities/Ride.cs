@@ -13,11 +13,9 @@ namespace RideServiceGroup1.Entities
         public List<Report> Reports { get; set; }
         public string Url
         {
-            get
-            {
-                return $"Img/{Name.ToLower()}.jpg";
-            }
+            get => $"Img/{Name.ToLower()}.jpg";
         }
+
         public Ride()
         {
 

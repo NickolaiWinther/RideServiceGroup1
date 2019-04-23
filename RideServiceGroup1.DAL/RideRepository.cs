@@ -8,25 +8,31 @@ namespace RideServiceGroup1.DAL
 {
     public class RideRepository : BaseRepository
     {
-        public List<Ride> GetAllRideImgs()
+        public List<Ride> GetAllRides()
         {
             List<Ride> rides = new List<Ride>();
 
-            string sql = "SELECT Rides.RideId, Rides.Name, Reports.Status FROM Rides JOIN Reports ON Rides.RideId = Reports.RideId";
-
-            DataTable rideTable = ExecuteQuery(sql);
+            DataTable rideTable = ExecuteQuery("SELECT * FROM Rides");
 
             foreach (DataRow row in rideTable.Rows)
             {
-                int id = (int)row["RideId"];
-                string name = (string)row["Name"];
-                int status = (int)row["Status"];
 
-                Ride ride = new Ride();
-
+                RideCategory rideCategory = new RideCategory((int)row["CategoryId"]);
+                Ride ride = new Ride() {
+                    Id = (int)row["RideId"],
+                    Name = (string)row["Name"],
+                    Description = (string)row["Description"],
+                    Category = rideCategory
+                };
                 rides.Add(ride);
             }
             return rides;
         }
+
+        private RideCategory GetRideCategory(int id)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

@@ -16,7 +16,7 @@ namespace RideServiceGroup1.Web.Pages
         {
             RideRepository rideRepo = new RideRepository();
 
-            Rides = rideRepo.GetAllRideImgs();
+            Rides = rideRepo.GetAllRides();
 
 
             //Rides.Add(new Ride()

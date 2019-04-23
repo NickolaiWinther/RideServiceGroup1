@@ -67,7 +67,7 @@ INSERT INTO Reports
 VALUES (2, '2018-06-22', 'Vogn nummer 2 tager vand ind', 5)
 
 INSERT INTO Reports
-VALUES (3, '2019-03-15', 'Nød nummer 12 sudder løst', 4)
+VALUES (3, '2019-03-15', 'Nød nummer 12 sidder løst', 4)
 
 INSERT INTO Reports
 VALUES (2, '2018-06-28', 'Et vandrør er gået i stykker', 5)

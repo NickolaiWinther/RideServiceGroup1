@@ -1,14 +1,9 @@
-﻿using System;
-
-namespace RideServiceGroup1.Entities
+﻿namespace RideServiceGroup1.Entities
 {
-    public class Status
-    {
-        enum RideStatus
+        public enum Status
         {
-            Working = 0,
-            Broken = 1,
-            BeingRepaired = 2
+            Working = 1,
+            Broken = 2,
+            BeingRepaired = 3
         }
-    }
 }

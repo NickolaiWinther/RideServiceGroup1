@@ -98,6 +98,9 @@ section .wrapper {
                 margin: 30px;
                 text-decoration: none;
             }
+            section .wrapper article .rideWrapper a .rides{
+                width: 400px;
+            }
 
 
                 section .wrapper article .rideWrapper a .rides i {

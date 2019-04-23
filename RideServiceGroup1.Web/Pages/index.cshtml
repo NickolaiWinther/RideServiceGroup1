@@ -10,7 +10,7 @@
 <div class="wrapper">
     <article>
         <div class="rideWrapper">
-            <a href="/">
+            @*<a href="/">
                 <div class="rides">
                     <h2>Hvirvelvinden</h2>
                     <img src="~/Img/hvirvelvinden.jpg" alt="hvirvelvinden" />
@@ -33,14 +33,15 @@
                         <p><i class="fas fa-dot-circle working"></i>Virker</p>
                     </div>
                 </a>
-            }
+            }*@
             @foreach (Ride ride in Model.Rides)
             {
-                <a>
+                <a href="/">
                     <div class="rides">
                         <h2>@ride.Name</h2>
                         <img src="@ride.Url" alt="@ride.Name" />
-                        <p><i class="fas fa-dot-circle working"></i>Virker</p>
+                        <p>@ride.Description</p>
+                        <p><i class="fas fa-dot-circle @ride.Status"></i></p>
                     </div>
                 </a>
             }
