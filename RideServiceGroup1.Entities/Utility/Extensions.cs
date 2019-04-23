@@ -27,12 +27,12 @@ namespace RideServiceGroup1.Entities.Utility
         //    return text.Substring(0, text.IndexOf(" ", maxWords));
         //}
 
-            /// <summary>
-            /// Shortens text, used for short descriptions
-            /// </summary>
-            /// <param name="text">Text to shorten</param>
-            /// <param name="maxChars">The max amount of chars</param>
-            /// <returns></returns>
+        /// <summary>
+        /// Shortens text, used for short descriptions
+        /// </summary>
+        /// <param name="text">Text to shorten</param>
+        /// <param name="maxChars">The max amount of chars</param>
+        /// <returns></returns>
 
         public static string ShortText(this string text, int maxChars)
         {

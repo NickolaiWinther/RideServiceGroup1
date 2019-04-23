@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using RideServiceGroup1.Entities.Utility;
 
 namespace RideServiceGroup1.Entities
 {
@@ -13,7 +12,9 @@ namespace RideServiceGroup1.Entities
         public RideCategory Category { get; set; }
         public Status Status
         {
-            get => Reports.OrderByDescending(x => x.ReportTime).FirstOrDefault().Status;
+            get => Reports.Count == 0 
+                ? Status.Working 
+                : Reports.OrderByDescending(x => x.ReportTime).FirstOrDefault().Status;
         }
         public List<Report> Reports { get; set; }
         public string Url
@@ -26,7 +27,7 @@ namespace RideServiceGroup1.Entities
 
         }
 
-        public int NumbersOfShutdowns() 
+        public int NumbersOfShutdowns()
         {
             int numberOfShutdowns = 0;
             Reports.ForEach(x =>
