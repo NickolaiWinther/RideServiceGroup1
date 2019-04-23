@@ -2,6 +2,7 @@
 {
         public enum Status
         {
+            Undefined = 0,
             Working = 1,
             Broken = 2,
             BeingRepaird = 3

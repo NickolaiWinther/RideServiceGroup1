@@ -6,15 +6,14 @@ using System.Text;
 
 namespace RideServiceGroup1.DAL
 {
+#warning FIX THIS CLASS
     public class RideRepository : BaseRepository
     {
         public List<Ride> GetAllRideImgs()
         {
             List<Ride> rides = new List<Ride>();
-
-            string sql = "SELECT Rides.RideId, Rides.Name, Reports.Status FROM Rides JOIN Reports ON Rides.RideId = Reports.RideId";
-
-            DataTable rideTable = ExecuteQuery(sql);
+            
+            DataTable rideTable = ExecuteQuery("SELECT Rides.RideId, Rides.Name, Reports.Status FROM Rides JOIN Reports ON Rides.RideId = Reports.RideId");
 
             foreach (DataRow row in rideTable.Rows)
             {
@@ -22,7 +21,7 @@ namespace RideServiceGroup1.DAL
                 string name = (string)row["Name"];
                 int status = (int)row["Status"];
 
-                Ride ride = new Ride();
+                Ride ride = new Ride(){};
 
                 rides.Add(ride);
             }
