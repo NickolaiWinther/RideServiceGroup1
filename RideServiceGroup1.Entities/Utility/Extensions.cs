@@ -14,7 +14,7 @@ namespace RideServiceGroup1.Entities.Utility
                     ? "Virker"
                     : status == Status.Broken
                         ? "Ødelagt"
-                        : status == Status.BeingRepaird
+                        : status == Status.BeingRepaired
                             ? "Reparers"
                             : throw new ArgumentException("Not a defined status", "Translate");
         }
@@ -34,9 +34,9 @@ namespace RideServiceGroup1.Entities.Utility
         /// <param name="maxChars">The max amount of chars</param>
         /// <returns></returns>
 
-        public static string ShortText(this string text, int maxChars)
+        public static string ToShortText(this string text, int maxChars)
         {
-            return text.Substring(0, maxChars) + "...";   
+            return text.Length <= maxChars ? text : text.Substring(0, maxChars) + "...";
         }
     }
 }
