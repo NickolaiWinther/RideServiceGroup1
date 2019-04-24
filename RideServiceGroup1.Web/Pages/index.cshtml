@@ -1,7 +1,7 @@
 ﻿@page
 @using RideServiceGroup1.Entities;
 @using RideServiceGroup1.Entities.Utility;
-@model RideServiceGroup1.Web.Pages.indexModel
+@model RideServiceGroup1.Web.Pages.IndexModel
 @{
     ViewData["Title"] = "index";
     Layout = "~/Pages/Shared/_Layout.cshtml";
@@ -37,7 +37,7 @@
             }*@
             @foreach (Ride ride in Model.Rides)
             {
-                <a href="/">
+                <a href="/Details/@ride.Id">
                     <div class="rides">
                         <h2>@ride.Name</h2>
                         <img src="@ride.Url" alt="@ride.Name" />

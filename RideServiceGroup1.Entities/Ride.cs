@@ -41,14 +41,19 @@ namespace RideServiceGroup1.Entities
         public int DaysSinceLastShutdown()
         {
             DateTime lastShutdown = new DateTime();
+
+            //var q = Reports.Where(x => x.Status == Status.Broken).OrderByDescending(t => t.ReportTime).FirstOrDefault();
+            
             foreach (Report report in Reports)
             {
                 if (report.Status == Status.Broken)
+                {
                     lastShutdown = report.ReportTime;
-                break;
+                    TimeSpan timeSinceLastShutdown = DateTime.Now - lastShutdown;
+                    return timeSinceLastShutdown.Days;
+                }
             }
-            TimeSpan timeSinceLastShutdown = DateTime.Now - lastShutdown;
-            return timeSinceLastShutdown.Days;
+            return 0;
         }
     }
 }
