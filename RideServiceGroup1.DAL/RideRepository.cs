@@ -7,17 +7,15 @@ using System.Text;
 
 namespace RideServiceGroup1.DAL
 {
-    public class RideRepository : BaseRepository
+    public class RideRepository : BaseRepository, IRepository
     {
         ReportRepository reportRepository = new ReportRepository();
         CategoryRepository categoryRepository = new CategoryRepository();
 
-        public List<Ride> GetAllRides()
+        private List<Ride> HandleData(DataTable data)
         {
-            List<Ride> rides = new List<Ride>();
-            DataTable rideTable = ExecuteQuery("SELECT * FROM Rides");
-
-            rideTable.Rows.Cast<DataRow>().ToList().ForEach(d => 
+            List<Ride> rides = new List<Ride>(); 
+            data.Rows.Cast<DataRow>().ToList().ForEach(d =>
             {
                 Ride ride = new Ride()
                 {
@@ -32,38 +30,31 @@ namespace RideServiceGroup1.DAL
             return rides;
         }
 
-        public Ride GetRide(int id)
+        public List<Ride> GetAll()
         {
-            DataTable categoriesTable = ExecuteQuery($"SELECT * FROM Rides WHERE RideId = {id}");
-            Ride ride = new Ride();
-
-            categoriesTable.Rows.Cast<DataRow>().ToList().ForEach(d =>
-            {
-                ride.Id = (int)d["RideId"];
-                ride.Name = (string)d["Name"];
-                ride.Description = (string)d["Description"];
-                ride.Reports = reportRepository.GetAllReportsFor((int)d["RideId"]);
-                ride.Category = categoryRepository.GetRideCategory((int)d["CategoryId"]);
-            });
-            return ride;
+            DataTable rideTable = ExecuteQuery("SELECT * FROM Rides");
+            return HandleData(rideTable);
         }
-        //public List<Ride> GetAllRides()
-        //{
-        //    List<Ride> rides = new List<Ride>();
-        //    DataTable rideTable = ExecuteQuery("SELECT * FROM Rides");
 
-        //    foreach (DataRow row in rideTable.Rows)
-        //    {
-        //        RideCategory rideCategory = new RideCategory((int)row["CategoryId"]);
-        //        Ride ride = new Ride() {
-        //            Id = (int)row["RideId"],
-        //            Name = (string)row["Name"],
-        //            Description = (string)row["Description"],
-        //            Category = rideCategory
-        //        };
-        //        rides.Add(ride);
-        //    }
-        //    return rides;
-        //}
+        public Ride GetById(int id)
+        {
+            DataTable rideTable = ExecuteQuery($"SELECT * FROM Rides WHERE RideId = {id}");
+            return HandleData(rideTable).FirstOrDefault();
+        }
+
+        public List<DataTable> HandleData()
+        {
+            throw new NotImplementedException();
+        }
+
+        List<IEntity> IRepository.GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEntity GetById()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

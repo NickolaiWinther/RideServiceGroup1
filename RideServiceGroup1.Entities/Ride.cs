@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace RideServiceGroup1.Entities
 {
-    public class Ride
+    public class Ride : IEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }
