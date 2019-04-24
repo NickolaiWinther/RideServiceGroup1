@@ -11,10 +11,10 @@ namespace RideServiceGroup1.DAL
     {
         private List<Report> HandleData(DataTable data)
         {
-            RideRepository rideRepository = new RideRepository();
-            List<Report> reports = new List<Report>();
+            RideRepository rideRepository = new RideRepository(); //Taking this to the class scope will crash everything
 
-            foreach (DataRow row in data.Rows)
+            List<Report> reports = new List<Report>();
+            data.Rows.Cast<DataRow>().ToList().ForEach(row => 
             {
                 Report report = new Report()
                 {
@@ -22,10 +22,11 @@ namespace RideServiceGroup1.DAL
                     Status = (Status)row["Status"],
                     ReportTime = (DateTime)row["ReportTime"],
                     Notes = (string)row["Notes"],
-                    Ride = (Ride)row["RideId"]
+                    //Ride = rideRepository.GetById((int)row["RideId"]), Ride is assigned inside RideRepository
                 };
                 reports.Add(report);
-            }
+            });
+            
             return reports;
         }
 
@@ -38,7 +39,6 @@ namespace RideServiceGroup1.DAL
         public List<Report> GetAllByRideId(int id)
         {
             DataTable reportsTable = ExecuteQuery($"SELECT * FROM Reports WHERE RideId = {id}");
-            //DataTable reportsTable = ExecuteQuery($"SELECT * FROM Reports WHERE RideId = {id} ORDER BY ReportTime DESC");
             return HandleData(reportsTable);
         }
     }

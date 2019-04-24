@@ -15,17 +15,18 @@ namespace RideServiceGroup1.DAL
             CategoryRepository categoryRepository = new CategoryRepository();
 
             List<Ride> rides = new List<Ride>();
-            foreach (DataRow row in data.Rows)
-            {
+            data.Rows.Cast<DataRow>().ToList().ForEach(row => {
                 Ride ride = new Ride()
                 {
                     Id = (int)row["RideId"],
                     Name = (string)row["Name"],
                     Description = (string)row["Description"],
                     Category = categoryRepository.GetById((int)row["CategoryId"]),
+                    Reports = reportRepository.GetAllByRideId((int)row["RideId"]),
                 };
+                ride.Reports.ForEach(x => x.Ride = ride);
                 rides.Add(ride);
-            }
+            });
             return rides;
         }
 

@@ -12,9 +12,7 @@ namespace RideServiceGroup1.DAL
         private List<RideCategory> HandleData(DataTable data)
         {
             List<RideCategory> categories = new List<RideCategory>();
-            
-            foreach (DataRow row in data.Rows)
-            {
+            data.Rows.Cast<DataRow>().ToList().ForEach(row => {
                 RideCategory rideCategory = new RideCategory()
                 {
                     Id = (int)row["RideCategoryId"],
@@ -22,7 +20,7 @@ namespace RideServiceGroup1.DAL
                     Description = (string)row["Description"]
                 };
                 categories.Add(rideCategory);
-            }
+            });
             return categories;
         }
 
