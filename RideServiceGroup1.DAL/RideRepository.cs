@@ -31,8 +31,7 @@ namespace RideServiceGroup1.DAL
 
         public List<Ride> GetAll()
         {
-            DataTable rideTable = new DataTable();
-            rideTable = ExecuteQuery("SELECT * FROM Rides");
+            DataTable rideTable = ExecuteQuery("SELECT * FROM Rides");
             return HandleData(rideTable);
         }
 
