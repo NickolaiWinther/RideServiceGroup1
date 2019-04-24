@@ -12,7 +12,7 @@ namespace RideServiceGroup1.DAL
         {
             List<Ride> rides = new List<Ride>();
             DataTable rideTable = ExecuteQuery("SELECT * FROM Rides");
-            
+            ReportRepository reportRepository = new ReportRepository();
             foreach (DataRow row in rideTable.Rows)
             {
                 RideCategory rideCategory = new RideCategory((int)row["CategoryId"]);
@@ -22,8 +22,14 @@ namespace RideServiceGroup1.DAL
                     Description = (string)row["Description"],
                     Category = rideCategory
                 };
+
+
+                ride.Reports = reportRepository.GetReports(ride);
+
                 rides.Add(ride);
             }
+
+
             return rides;
         }
     }
