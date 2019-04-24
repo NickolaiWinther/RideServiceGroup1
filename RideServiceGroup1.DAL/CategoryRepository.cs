@@ -28,13 +28,13 @@ namespace RideServiceGroup1.DAL
 
         public List<RideCategory> GetAll()
         {
-            DataTable categoriesTable = ExecuteQuery("SELECT * FROM RideCategory");
+            DataTable categoriesTable = ExecuteQuery("SELECT * FROM RideCategoies");
             return HandleData(categoriesTable);
         }
 
         public RideCategory GetById(int id)
         {
-            DataTable categoriesTable = ExecuteQuery($"SELECT * FROM RideCategory WHERE RideCategoryId = {id}");
+            DataTable categoriesTable = ExecuteQuery($"SELECT * FROM RideCategories WHERE RideCategoryId = {id}");
             return HandleData(categoriesTable).FirstOrDefault();
         }
     }
