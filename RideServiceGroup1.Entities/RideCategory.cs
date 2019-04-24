@@ -2,7 +2,7 @@
 
 namespace RideServiceGroup1.Entities
 {
-    public class RideCategory : IEntity
+    public class RideCategory
     {
         public RideCategory()
         {

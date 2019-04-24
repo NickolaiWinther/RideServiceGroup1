@@ -7,32 +7,32 @@ using System.Text;
 
 namespace RideServiceGroup1.DAL
 {
-    public class RideRepository : BaseRepository, IRepository
+    public class RideRepository : BaseRepository
     {
-        ReportRepository reportRepository = new ReportRepository();
-        CategoryRepository categoryRepository = new CategoryRepository();
-
         private List<Ride> HandleData(DataTable data)
         {
-            List<Ride> rides = new List<Ride>(); 
-            data.Rows.Cast<DataRow>().ToList().ForEach(d =>
+            ReportRepository reportRepository = new ReportRepository();
+            CategoryRepository categoryRepository = new CategoryRepository();
+
+            List<Ride> rides = new List<Ride>();
+            foreach (DataRow row in data.Rows)
             {
                 Ride ride = new Ride()
                 {
-                    Id = (int)d["RideId"],
-                    Name = (string)d["Name"],
-                    Description = (string)d["Description"],
-                    Reports = reportRepository.GetAllReportsFor((int)d["RideId"]),
-                    Category = categoryRepository.GetRideCategory((int)d["CategoryId"])
+                    Id = (int)row["RideId"],
+                    Name = (string)row["Name"],
+                    Description = (string)row["Description"],
+                    Category = categoryRepository.GetById((int)row["CategoryId"]),
                 };
                 rides.Add(ride);
-            });
+            }
             return rides;
         }
 
         public List<Ride> GetAll()
         {
-            DataTable rideTable = ExecuteQuery("SELECT * FROM Rides");
+            DataTable rideTable = new DataTable();
+            rideTable = ExecuteQuery("SELECT * FROM Rides");
             return HandleData(rideTable);
         }
 
@@ -40,21 +40,6 @@ namespace RideServiceGroup1.DAL
         {
             DataTable rideTable = ExecuteQuery($"SELECT * FROM Rides WHERE RideId = {id}");
             return HandleData(rideTable).FirstOrDefault();
-        }
-
-        public List<DataTable> HandleData()
-        {
-            throw new NotImplementedException();
-        }
-
-        List<IEntity> IRepository.GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public IEntity GetById()
-        {
-            throw new NotImplementedException();
         }
     }
 }

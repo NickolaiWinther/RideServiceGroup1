@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace RideServiceGroup1.Entities
 {
-    public class Ride : IEntity
+    public class Ride
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -16,7 +16,7 @@ namespace RideServiceGroup1.Entities
                 ? Status.Working 
                 : Reports.OrderByDescending(x => x.ReportTime).FirstOrDefault().Status;
         }
-        public List<Report> Reports { get; set; }
+        public List<Report> Reports { get; set; } = new List<Report>();
         public string Url
         {
             get => $"Img/{Name.ToLower()}.jpg";

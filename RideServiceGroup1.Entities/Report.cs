@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RideServiceGroup1.Entities
 {
-    public class Report : IEntity
+    public class Report
     {
         public int Id { get; set; }
         public Ride Ride { get; set; }

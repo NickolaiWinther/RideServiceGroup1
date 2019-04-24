@@ -9,45 +9,37 @@ namespace RideServiceGroup1.DAL
 {
     public class ReportRepository : BaseRepository
     {
-        RideRepository rideRepository = new RideRepository();
-
-        public List<Report> GetAllReports()
+        private List<Report> HandleData(DataTable data)
         {
+            RideRepository rideRepository = new RideRepository();
             List<Report> reports = new List<Report>();
-            DataTable reportsTable = ExecuteQuery($"SELECT * FROM Reports");
 
-            reportsTable.Rows.Cast<DataRow>().ToList().ForEach(d => 
+            foreach (DataRow row in data.Rows)
             {
                 Report report = new Report()
                 {
-                    Id = (int)d["ReportId"],
-                    Status = (Status)d["Status"],
-                    ReportTime = (DateTime)d["ReportTime"],
-                    Notes = (string)d["Notes"],
+                    Id = (int)row["ReportId"],
+                    Status = (Status)row["Status"],
+                    ReportTime = (DateTime)row["ReportTime"],
+                    Notes = (string)row["Notes"],
+                    Ride = (Ride)row["RideId"]
                 };
                 reports.Add(report);
-            });
+            }
             return reports;
         }
 
-        public List<Report> GetAllReportsFor(int id)
+        public List<Report> GetAll()
         {
-            List<Report> reports = new List<Report>();
-            DataTable reportsTable = ExecuteQuery($"SELECT * FROM Reports WHERE RideId = {id} ORDER BY ReportTime DESC");
+            DataTable reportsTable = ExecuteQuery($"SELECT * FROM Reports");
+            return HandleData(reportsTable);
+        }
 
-            reportsTable.Rows.Cast<DataRow>().ToList().ForEach(d =>
-            {
-                Report report = new Report()
-                {
-                    Id = (int)d["ReportId"],
-                    Status = (Status)d["Status"],
-                    ReportTime = (DateTime)d["ReportTime"],
-                    Notes = (string)d["Notes"],
-                    Ride = rideRepository.GetRide((int)d["RideId"])
-                };
-                reports.Add(report);
-            });
-            return reports;
+        public List<Report> GetAllByRideId(int id)
+        {
+            DataTable reportsTable = ExecuteQuery($"SELECT * FROM Reports WHERE RideId = {id}");
+            //DataTable reportsTable = ExecuteQuery($"SELECT * FROM Reports WHERE RideId = {id} ORDER BY ReportTime DESC");
+            return HandleData(reportsTable);
         }
     }
 }
