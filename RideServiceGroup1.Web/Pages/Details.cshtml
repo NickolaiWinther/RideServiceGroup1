@@ -13,20 +13,28 @@
 <div class="wrapper">
     <article>
         <div class="detailWrapper">
-            <p>Kategori: @Model.Ride.Category.Name</p>
-            <p>Beskrivelse: @Model.Ride.Description</p>
-            <p>Nedlukninger: @Model.Ride.NumbersOfShutdowns()</p>
-            <p>Dage siden sidste nedlukkelse: @Model.Ride.DaysSinceLastShutdown()</p>
-            <br />
-            <br />
-            <h2>REPORTER</h2>
-            @foreach (Report report in Model.Ride.Reports)
-            {
-                <p>Tid: @report.ReportTime</p>
-                <p>Status: @report.Status.Translate()</p>
-                <p>Note: @report.Notes</p>
-                <br />
-            }
+            <img src="@Model.Ride.Url" alt="@Model.Ride.Name" />
+            <div>
+                <p>Kategori: @Model.Ride.Category.Name</p>
+                <p>Beskrivelse: @Model.Ride.Description</p>
+                <p>Nedlukninger: @Model.Ride.NumbersOfShutdowns()</p>
+                <p>Dage siden sidste nedlukkelse: @Model.Ride.DaysSinceLastShutdown()</p>
+            </div>
         </div>
+        @if (Model.Ride.Reports.Count > 0)
+        {
+            <h2>REPORTER</h2>
+            <div class="reportWrapper">
+                @foreach (Report report in Model.Ride.Reports)
+                {
+                    <div class="report">
+                        <p>Tid: @report.ReportTime</p>
+                        <p>Status: @report.Status.Translate()</p>
+                        <p>Note: @report.Notes</p>
+                    </div>
+                }
+            </div>
+        }
+
     </article>
 </div>

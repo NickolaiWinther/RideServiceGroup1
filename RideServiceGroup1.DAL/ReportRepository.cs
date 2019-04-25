@@ -32,7 +32,7 @@ namespace RideServiceGroup1.DAL
 
         public List<Report> GetAll()
         {
-            DataTable reportsTable = ExecuteQuery($"SELECT * FROM Reports");
+            DataTable reportsTable = ExecuteQuery($"SELECT * FROM Reports ORDER BY ReportTime DESC");
             return HandleData(reportsTable);
         }
 

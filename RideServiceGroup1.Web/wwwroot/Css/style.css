@@ -94,36 +94,59 @@ section .wrapper {
             padding: 5px;
             padding-bottom: 20px;
         }
-            section .wrapper article .rideWrapper a{
+
+            section .wrapper article .rideWrapper a {
                 margin: 30px;
                 text-decoration: none;
             }
-            section .wrapper article .rideWrapper a .rides{
-                width: 400px;
+
+                section .wrapper article .rideWrapper a .rides {
+                    width: 400px;
+                }
+
+
+                    section .wrapper article .rideWrapper a .rides i {
+                        padding: 0 10px;
+                    }
+
+                        section .wrapper article .rideWrapper a .rides .working {
+                            color: limegreen;
+                        }
+
+                        section .wrapper article .rideWrapper a .rides .broken {
+                            color: red;
+                        }
+
+                        section .wrapper article .rideWrapper a .rides .beingRepaired {
+                            color: orange;
+                        }
+
+                    section .wrapper article .rideWrapper a .rides img {
+                        height: 400px;
+                    }
+
+        section .wrapper article .detailWrapper {
+            display: flex;
+        }
+
+            section .wrapper article .detailWrapper img {
+                width: 200px;
+                align-self: flex-start;
+                padding-right: 50px;
             }
 
+        section .wrapper article .reportWrapper {
+            background: #404040;
+            border-radius: 20px;
+        }
 
-                section .wrapper article .rideWrapper a .rides i {
-                    padding: 0 10px;
+            section .wrapper article .reportWrapper .report {
+                padding: 20px;
+            }
+
+                section .wrapper article .reportWrapper .report p {
+                    color: white;
                 }
-
-                    section .wrapper article .rideWrapper a .rides i.working {
-                        color: limegreen;
-                    }
-
-                    section .wrapper article .rideWrapper a .rides i.broken {
-                        color: red;
-                    }
-
-                    section .wrapper article .rideWrapper a .rides i.beingRepaired {
-                        color: orange;
-                    }
-
-                section .wrapper article .rideWrapper a .rides img {
-                    height: 400px;
-                }
-
-
 
 @media screen and (max-width: 900px) {
     .classic .wrapper {
