@@ -9,23 +9,13 @@ using RideServiceGroup1.Entities;
 
 namespace RideServiceGroup1.Web.Pages
 {
-    public class indexModel : PageModel
+    public class IndexModel : PageModel
     {
         public List<Ride> Rides { get; set; }
         public void OnGet()
         {
             RideRepository rideRepo = new RideRepository();
-
-            Rides = rideRepo.GetAllRides();
-
-
-            //Rides.Add(new Ride()
-            //{
-            //    Id = 1,
-            //    Category = new RideCategory() { Id = 1, Description = "Vandting", Name = "Vandforlystelse" },
-            //    Name = "Orkanen",
-            //    Description = "Meget lang beskrivelse om orkanen som er sjov og nui gider jeg ikke skrive mere men det her er mere end 50 tegn"
-            //} );
+            Rides = rideRepo.GetAll();
         }
     }
 }

@@ -2,33 +2,44 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Linq;
 using System.Text;
 
 namespace RideServiceGroup1.DAL
 {
     public class RideRepository : BaseRepository
     {
-        public List<Ride> GetAllRides()
+        private List<Ride> HandleData(DataTable data)
         {
-            List<Ride> rides = new List<Ride>();
-            DataTable rideTable = ExecuteQuery("SELECT * FROM Rides");
             ReportRepository reportRepository = new ReportRepository();
-            foreach (DataRow row in rideTable.Rows)
-            {
-                RideCategory rideCategory = new RideCategory((int)row["CategoryId"]);
-                Ride ride = new Ride() {
+            CategoryRepository categoryRepository = new CategoryRepository();
+
+            List<Ride> rides = new List<Ride>();
+            data.Rows.Cast<DataRow>().ToList().ForEach(row => {
+                Ride ride = new Ride()
+                {
                     Id = (int)row["RideId"],
                     Name = (string)row["Name"],
                     Description = (string)row["Description"],
-                    Category = rideCategory
+                    Category = categoryRepository.GetById((int)row["CategoryId"]),
+                    Reports = reportRepository.GetAllByRideId((int)row["RideId"]),
                 };
-
-
-                ride.Reports = reportRepository.GetReports(ride);
-
+                ride.Reports.ForEach(x => x.Ride = ride);
                 rides.Add(ride);
-            }
+            });
             return rides;
+        }
+
+        public List<Ride> GetAll()
+        {
+            DataTable rideTable = ExecuteQuery("SELECT * FROM Rides");
+            return HandleData(rideTable);
+        }
+
+        public Ride GetById(int id)
+        {
+            DataTable rideTable = ExecuteQuery($"SELECT * FROM Rides WHERE RideId = {id}");
+            return HandleData(rideTable).FirstOrDefault();
         }
     }
 }

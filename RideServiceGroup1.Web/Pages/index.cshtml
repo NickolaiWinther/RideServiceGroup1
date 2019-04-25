@@ -1,7 +1,7 @@
 ﻿@page
 @using RideServiceGroup1.Entities;
 @using RideServiceGroup1.Entities.Utility;
-@model RideServiceGroup1.Web.Pages.indexModel
+@model RideServiceGroup1.Web.Pages.IndexModel
 @{
     ViewData["Title"] = "index";
     Layout = "~/Pages/Shared/_Layout.cshtml";
@@ -13,12 +13,12 @@
         <div class="rideWrapper">
             @foreach (Ride ride in Model.Rides)
             {
-                <a href="/">
+                <a href="/Details/@ride.Id">
                     <div class="rides">
                         <h2>@ride.Name</h2>
                         <img src="@ride.Url" alt="@ride.Name" />
-                        <p>@ride.Description.ShortText(5)</p>
-                        <p><i class="fas fa-dot-circle @ride.Status.ToString().ToLower()"></i> @ride.Status.Translate()</p>
+                        <p>@ride.Description.ToShortText(50)</p>
+                        <p><i class="fas fa-dot-circle @ride.Status.LowercaseStatus()"></i>@ride.Status.Translate()</p>
                     </div>
                 </a>
             }

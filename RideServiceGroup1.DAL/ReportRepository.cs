@@ -3,31 +3,43 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Text;
+using System.Linq;
 
 namespace RideServiceGroup1.DAL
 {
     public class ReportRepository : BaseRepository
     {
-        public List<Report> GetReports(Ride ride)
+        private List<Report> HandleData(DataTable data)
         {
+            RideRepository rideRepository = new RideRepository(); //Taking this to the class scope will crash everything
+
             List<Report> reports = new List<Report>();
-            DataTable reportTable = ExecuteQuery($"SELECT * FROM Reports WHERE RideId = {ride.Id}");
-            ReportRepository reportRepository = new ReportRepository();
-            foreach (DataRow row in reportTable.Rows)
+            data.Rows.Cast<DataRow>().ToList().ForEach(row => 
             {
-                RideCategory rideCategory = new RideCategory((int)row["CategoryId"]);
                 Report report = new Report()
                 {
                     Id = (int)row["ReportId"],
                     Status = (Status)row["Status"],
                     ReportTime = (DateTime)row["ReportTime"],
                     Notes = (string)row["Notes"],
-                    Ride = (Ride)row["RideId"]
+                    //Ride = rideRepository.GetById((int)row["RideId"]), Ride is assigned inside RideRepository
                 };
-                
                 reports.Add(report);
-            }
+            });
+            
             return reports;
+        }
+
+        public List<Report> GetAll()
+        {
+            DataTable reportsTable = ExecuteQuery($"SELECT * FROM Reports");
+            return HandleData(reportsTable);
+        }
+
+        public List<Report> GetAllByRideId(int id)
+        {
+            DataTable reportsTable = ExecuteQuery($"SELECT * FROM Reports WHERE RideId = {id}");
+            return HandleData(reportsTable);
         }
     }
 }
