@@ -2,27 +2,25 @@
 @using RideServiceGroup1.DAL;
 @using RideServiceGroup1.Entities;
 @using RideServiceGroup1.Entities.Utility;
+@model RideServiceGroup1.Web.Pages.DetailsModel
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Pages/Shared/_Layout.cshtml";
-    
-    var id = Int32.Parse((string)RouteData.Values["id"]);
-    RideRepository rideRepository = new RideRepository();
-    Ride ride = rideRepository.GetById(id);
+
 }
 
-<h1>Detailjer for: @ride.Name ID: @ride.Id</h1>
+<h1>Detailjer for: @Model.Ride.Name ID: @Model.Ride.Id</h1>
 <div class="wrapper">
     <article>
-        <div class="rideWrapper">
-            <p>Kategori: @ride.Category.Name</p>
-            <p>Beskrivelse: @ride.Description</p>
-            <p>Nedlukninger: @ride.NumbersOfShutdowns()</p>
-            <p>Dage siden sidste nedlukkelse: @ride.DaysSinceLastShutdown()</p>
+        <div class="detailWrapper">
+            <p>Kategori: @Model.Ride.Category.Name</p>
+            <p>Beskrivelse: @Model.Ride.Description</p>
+            <p>Nedlukninger: @Model.Ride.NumbersOfShutdowns()</p>
+            <p>Dage siden sidste nedlukkelse: @Model.Ride.DaysSinceLastShutdown()</p>
             <br />
             <br />
-            <h1>REPORTER</h1>
-            @foreach (Report report in ride.Reports)
+            <h2>REPORTER</h2>
+            @foreach (Report report in Model.Ride.Reports)
             {
                 <p>Tid: @report.ReportTime</p>
                 <p>Status: @report.Status.Translate()</p>
