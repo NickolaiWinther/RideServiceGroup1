@@ -11,30 +11,6 @@
 <div class="wrapper">
     <article>
         <div class="rideWrapper">
-            @*<a href="/">
-                <div class="rides">
-                    <h2>Hvirvelvinden</h2>
-                    <img src="~/Img/hvirvelvinden.jpg" alt="hvirvelvinden" />
-                    <p><i class="fas fa-dot-circle broken"></i>I stykker</p>
-                </div>
-            </a>
-            <a href="/">
-                <div class="rides">
-                    <h2>Hvirvelvinden</h2>
-                    <img src="~/Img/hvirvelvinden.jpg" alt="hvirvelvinden" />
-                    <p><i class="fas fa-dot-circle beingRepaired"></i>Bliver lavet</p>
-                </div>
-            </a>
-            @for (int i = 0; i < 4; i++)
-            {
-                <a>
-                    <div class="rides">
-                        <h2>Hvirvelvinden</h2>
-                        <img src="~/Img/hvirvelvinden.jpg" alt="hvirvelvinden" />
-                        <p><i class="fas fa-dot-circle working"></i>Virker</p>
-                    </div>
-                </a>
-            }*@
             @foreach (Ride ride in Model.Rides)
             {
                 <a href="/">

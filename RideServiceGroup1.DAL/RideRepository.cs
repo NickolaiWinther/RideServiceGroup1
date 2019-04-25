@@ -28,8 +28,6 @@ namespace RideServiceGroup1.DAL
 
                 rides.Add(ride);
             }
-
-
             return rides;
         }
     }
