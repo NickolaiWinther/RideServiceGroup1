@@ -12,14 +12,14 @@ namespace RideServiceGroup1.Entities
         public RideCategory Category { get; set; }
         public Status Status
         {
-            get => Reports.Count == 0 
-                ? Status.Working 
-                : Reports.OrderByDescending(x => x.ReportTime).FirstOrDefault().Status;
+            get => Reports.Count == 0
+                ? Status.Working
+                : Reports.OrderBy(x => x.Status).FirstOrDefault().Status;
         }
-        public List<Report> Reports { get; set; } = new List<Report>();
+        public List<Report> Reports { get; set; } 
         public string Url
         {
-            get => $"Img/{Name.ToLower()}.jpg";
+            get => $"/Img/{Name.ToLower()}.jpg";
         }
 
         public Ride()
