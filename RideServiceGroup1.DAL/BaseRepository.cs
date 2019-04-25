@@ -15,8 +15,8 @@ namespace RideServiceGroup1.DAL
         /// <param name="conString">Connection string to the database</param>
         public BaseRepository()
         {
-            connectionString = @"Data Source=cvdb3,1477;Initial Catalog=RideServiceGroup1;Integrated Security=True;";
-            //connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=RideServiceGroup1;Integrated Security=True;";
+            //connectionString = @"Data Source=cvdb3,1477;Initial Catalog=RideServiceGroup1;Integrated Security=True;";
+            connectionString = @"Data Source=(localdb)\mssqllocaldb;Initial Catalog=RideServiceGroup1;Integrated Security=True;";
         }
 
         /// <summary>
