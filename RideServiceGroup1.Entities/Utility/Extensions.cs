@@ -19,6 +19,19 @@ namespace RideServiceGroup1.Entities.Utility
                             : throw new ArgumentException("Not a defined status", "Translate");
         }
 
+        public static string LowercaseStatus(this Status status)
+        {
+            return status == Status.Undefined
+                ? "undefined"
+                : status == Status.Working
+                    ? "working"
+                    : status == Status.Broken
+                        ? "broken"
+                        : status == Status.BeingRepaired
+                            ? "beingRepaired"
+                            : throw new ArgumentException("Not a defined status", "Translate");
+        }
+
         //public static string ShortText(this string text, int maxWords)
         //{
         //    if (text == null || text.Length < maxWords || text.IndexOf(" ", maxWords) == -1)
