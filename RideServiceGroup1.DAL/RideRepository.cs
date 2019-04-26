@@ -44,7 +44,7 @@ namespace RideServiceGroup1.DAL
 
         public int Insert (Ride ride)
         {
-            return ExecuteNonQuery($"INSERT INTO Rides VALUES('{ride.Name}', '{ride.Description}', {ride.Category.Id}");
+            return ExecuteNonQuery($"INSERT INTO Rides VALUES('{ride.Name}', '{ride.Description}', {ride.Category.Id})");
         }
 
         public int Delete()
