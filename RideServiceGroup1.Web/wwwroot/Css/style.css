@@ -72,6 +72,34 @@ p, a {
                         text-decoration: none;
                     }
 
+
+form{
+    width: 250px;
+    padding: 20px;
+}
+form label {
+    width: 29%;
+    display: inline-block;
+    color: white;
+    padding: 5px 0;
+    box-sizing: border-box;
+    margin: 2px 0;
+}
+form input[type=text], select {
+    width: 69%;
+    border: none;
+    padding: 5px 2px;
+    box-sizing: border-box;
+}
+
+    form input[type=submit] {
+        background-color: #64963c;
+        width: 100%;
+        border: none;
+        padding: 5px;
+        margin-top: 5px;
+    }
+
 section h1 {
     font-size: 3rem;
     color: white;
