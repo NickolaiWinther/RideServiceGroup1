@@ -11,11 +11,39 @@ namespace RideServiceGroup1.Web.Pages
 {
     public class DetailsModel : PageModel
     {
+        [BindProperty(SupportsGet = true)]
+        public string Notes { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public DateTime ReportTime { get; set; }
+        [BindProperty(SupportsGet = true)]
+        public Status Status { get; set; }
+
         public Ride Ride { get; set; }
-        public void OnGet()
+
+        public void OnPost(int id)
         {
             RideRepository rideRepository = new RideRepository();
-            Ride = rideRepository.GetById(int.Parse((string)RouteData.Values["id"]));
+            Ride = rideRepository.GetById(id);
+
+            ReportRepository reportRepository = new ReportRepository();
+            if (Notes != string.Empty && Notes != null)
+            {
+                Report report = new Report()
+                {
+                    Notes = Notes,
+                    ReportTime = ReportTime,
+                    Status = Status,
+                    Ride = Ride
+                };
+                reportRepository.Insert(report);
+                Ride.Reports.Add(report);
+            }
+        }
+
+        public void OnGet(int id)
+        {
+            RideRepository rideRepository = new RideRepository();
+            Ride = rideRepository.GetById(id);
         }
     }
 }

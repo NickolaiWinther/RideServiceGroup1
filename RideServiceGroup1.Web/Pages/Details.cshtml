@@ -1,4 +1,4 @@
-﻿@page "{id}"
+﻿@page "{id:int}"
 @using RideServiceGroup1.DAL;
 @using RideServiceGroup1.Entities;
 @using RideServiceGroup1.Entities.Utility;
@@ -8,6 +8,31 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 
 }
+
+<div class="report-bar">
+    <article>
+        <form method="post">
+            @Html.AntiForgeryToken()
+            <!-- Write note -->
+            <label for="Notes">Noter:</label>
+            <input type="text" name="Notes" placeholder="Skrive noter" autofocus /><br />
+            <!-- Report time -->
+            <label for="ReportTime">Tid:</label>
+            <input type="datetime" name="ReportTime" value="@DateTime.Now" readonly autofocus /><br />
+            <!-- Select status-->
+            <label for="Status">Status:</label>
+            <select name="Status">
+                @{
+                    foreach (Status status in Enum.GetValues(typeof(Status)))
+                    {
+                        <option value="@status">@status.Translate()</option>
+                    }
+                }
+            </select><br />
+            <input type="submit" value="Skab raport" />
+        </form>
+    </article>
+</div>
 
 <h1>Detailjer for: @Model.Ride.Name ID: @Model.Ride.Id</h1>
 <div class="wrapper">
