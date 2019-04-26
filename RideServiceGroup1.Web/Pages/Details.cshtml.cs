@@ -22,10 +22,10 @@ namespace RideServiceGroup1.Web.Pages
 
         public void OnPost(int id)
         {
+            ReportRepository reportRepository = new ReportRepository();
             RideRepository rideRepository = new RideRepository();
             Ride = rideRepository.GetById(id);
 
-            ReportRepository reportRepository = new ReportRepository();
             if (Notes != string.Empty && Notes != null)
             {
                 Report report = new Report()
