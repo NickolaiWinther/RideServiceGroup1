@@ -7,23 +7,13 @@
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<div class="container">
-    <span class="input"><i class="FONTAWESOMEICEOn"></i></span>
-    <p>Søg</p>
-    <select>
-        <option value="name">Navn</option>
-        <option value="categori">Kategori</option>
-        <option value="status">Status</option>
-    </select>
-    <input type="text" id="Search" placeholder="Search" class="search-bar"/>
-</div>
-
 <h1>Fårup sommerland</h1>
 <div class="wrapper">
     <article>
         <div class="rideWrapper">
             @foreach (Ride ride in Model.Rides)
             {
+            <div id="ride-@ride.Id">
                 <a href="/Details/@ride.Id">
                     <div class="rides">
                         <h2>@ride.Name</h2>
@@ -32,6 +22,7 @@
                         <p class="@ride.Status.LowercaseStatus()"><i class="fas fa-dot-circle "></i>@ride.Status.Translate()</p>
                     </div>
                 </a>
+            </div>
             }
         </div>
     </article>

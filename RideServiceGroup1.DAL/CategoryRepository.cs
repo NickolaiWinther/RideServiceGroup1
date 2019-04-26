@@ -26,7 +26,7 @@ namespace RideServiceGroup1.DAL
 
         public List<RideCategory> GetAll()
         {
-            DataTable categoriesTable = ExecuteQuery("SELECT * FROM RideCategoies");
+            DataTable categoriesTable = ExecuteQuery("SELECT * FROM RideCategories");
             return HandleData(categoriesTable);
         }
 

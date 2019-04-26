@@ -41,5 +41,10 @@ namespace RideServiceGroup1.DAL
             DataTable rideTable = ExecuteQuery($"SELECT * FROM Rides WHERE RideId = {id}");
             return HandleData(rideTable).FirstOrDefault();
         }
+
+        //public int Create(int status = 1 )
+        //{
+        //    return ExecuteNonQuery("INSERT INTO Rides VALUES('Vandfaldet', '42 meter lang vandrutsjebane, der kun går en vej: Ned!', 1)");
+        //}
     }
 }
