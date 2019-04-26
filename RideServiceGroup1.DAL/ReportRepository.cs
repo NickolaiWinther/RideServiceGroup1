@@ -11,7 +11,7 @@ namespace RideServiceGroup1.DAL
     {
         private List<Report> HandleData(DataTable data)
         {
-            RideRepository rideRepository = new RideRepository(); //Taking this to the class scope will crash everything
+            RideRepository rideRepository = new RideRepository();
 
             List<Report> reports = new List<Report>();
             data.Rows.Cast<DataRow>().ToList().ForEach(row => 
@@ -40,6 +40,21 @@ namespace RideServiceGroup1.DAL
         {
             DataTable reportsTable = ExecuteQuery($"SELECT * FROM Reports WHERE RideId = {id}");
             return HandleData(reportsTable);
+        }
+
+        public int Insert(Report report)
+        {
+            return ExecuteNonQuery($"INSERT INTO Reports VALUES({(int)report.Status}, '{report.ReportTime.ToString("yyyy-MM-dd HH:mm:ss")}', '{report.Notes}', {report.Ride.Id})");
+        }
+
+        public int Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Update()
+        {
+            throw new NotImplementedException();
         }
     }
 }

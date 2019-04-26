@@ -41,5 +41,20 @@ namespace RideServiceGroup1.DAL
             DataTable rideTable = ExecuteQuery($"SELECT * FROM Rides WHERE RideId = {id}");
             return HandleData(rideTable).FirstOrDefault();
         }
+
+        public int Insert (Ride ride)
+        {
+            return ExecuteNonQuery($"INSERT INTO Rides VALUES('{ride.Name}', '{ride.Description}', {ride.Category.Id}");
+        }
+
+        public int Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Update()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

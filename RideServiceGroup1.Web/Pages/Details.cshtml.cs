@@ -14,9 +14,8 @@ namespace RideServiceGroup1.Web.Pages
         public Ride Ride { get; set; }
         public void OnGet()
         {
-            var id = Int32.Parse((string)RouteData.Values["id"]);
             RideRepository rideRepository = new RideRepository();
-            Ride = rideRepository.GetById(id);
+            Ride = rideRepository.GetById(int.Parse((string)RouteData.Values["id"]));
         }
     }
 }

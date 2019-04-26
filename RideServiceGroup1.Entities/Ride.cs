@@ -14,9 +14,10 @@ namespace RideServiceGroup1.Entities
         {
             get => Reports.Count == 0
                 ? Status.Working
-                : Reports.OrderBy(x => x.Status).FirstOrDefault().Status;
+                : ReportsOrderdByDate.FirstOrDefault().Status;
         }
         public List<Report> Reports { get; set; } 
+        public List<Report> ReportsOrderdByDate { get => Reports.OrderByDescending(o => o.ReportTime).ToList(); }
         public string Url
         {
             get => $"/Img/{Name.ToLower()}.jpg";
@@ -41,10 +42,8 @@ namespace RideServiceGroup1.Entities
         public int DaysSinceLastShutdown()
         {
             DateTime lastShutdown = new DateTime();
-
-            //var q = Reports.Where(x => x.Status == Status.Broken).OrderByDescending(t => t.ReportTime).FirstOrDefault();
             
-            foreach (Report report in Reports)
+            foreach (Report report in ReportsOrderdByDate)
             {
                 if (report.Status == Status.Broken)
                 {
