@@ -42,9 +42,19 @@ namespace RideServiceGroup1.DAL
             return HandleData(rideTable).FirstOrDefault();
         }
 
-        //public int Create(int status = 1 )
-        //{
-        //    return ExecuteNonQuery("INSERT INTO Rides VALUES('Vandfaldet', '42 meter lang vandrutsjebane, der kun går en vej: Ned!', 1)");
-        //}
+        public int Insert (Ride ride)
+        {
+            return ExecuteNonQuery($"INSERT INTO Rides VALUES('{ride.Name}', '{ride.Description}', {ride.Category.Id}");
+        }
+
+        public int Delete()
+        {
+            throw new NotImplementedException();
+        }
+
+        public int Update()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
