@@ -21,7 +21,7 @@ h4 {
 }
 
 p {
-    color: grey;
+    color: white;
 }
 
 p, a {
@@ -74,19 +74,19 @@ p, a {
 
 
 form{
-    width: 250px;
-    padding: 20px;
+    margin: 20px;
 }
 form label {
-    width: 29%;
+    width: 90px;
     display: inline-block;
     color: white;
     padding: 5px 0;
     box-sizing: border-box;
     margin: 2px 0;
+    margin-right: -4px;
 }
-form input[type=text], select {
-    width: 69%;
+form input[type=text], select, input[type=datetime]{
+    width: 210px;
     border: none;
     padding: 5px 2px;
     box-sizing: border-box;
@@ -94,7 +94,7 @@ form input[type=text], select {
 
     form input[type=submit] {
         background-color: #64963c;
-        width: 100%;
+        width: 300px;
         border: none;
         padding: 5px;
         margin-top: 5px;

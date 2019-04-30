@@ -1,4 +1,5 @@
 ﻿@page
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @using RideServiceGroup1.Entities;
 @using RideServiceGroup1.Entities.Utility;
 @model RideServiceGroup1.Web.Pages.IndexModel
@@ -10,7 +11,7 @@
 <form>
     <!-- Search by name -->
     <label for="SearchName">Navn:</label>
-    <input type="text" name="SearchName" placeholder="Navn på forlystelse" autofocus /><br />
+    <input type="text" name="SearchName" placeholder="Navn på forlystelse" /><br />
     <!-- Category search -->
     <label for="SearchCat">Kategori:</label>
     <select name="SearchCat">

@@ -4,31 +4,29 @@
 @using RideServiceGroup1.Entities.Utility
 @{
     ViewData["Title"] = "AddRide";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
 <h1>HUSK!: Billede skal være placeret i "Img" og have det samme navn som forlystelsen du opretter</h1>
 <p>Kontakt en administrator for at tilføje et billede</p>
-<div class="report-bar">
-    <article>
-        <form method="post">
-            @Html.AntiForgeryToken()
-            <!-- Write name -->
-            <label for="Name">Navn:</label>
-            <input type="text" name="Name" placeholder="Skriv navn på forlystelse" autofocus /><br />
-            <!-- Description -->
-            <label for="Description">Navn:</label>
-            <input type="text" name="Description" placeholder="Skriv beskrivelse"/><br />
-            <!-- Category -->
-            <label for="SelectedCategoryId">Kategori:</label>
-            <select name="SelectedCategoryId">
-                @{
-                    foreach (RideCategory cat in Model.Category)
-                    {
-                        <option value="@cat.Id">@cat.Name</option>
-                    }
-                }
-            </select><br />
-            <input type="submit" value="Skab raport" />
-        </form>
-    </article>
-</div>
+
+<form method="post">
+    @Html.AntiForgeryToken()
+    <!-- Write name -->
+    <label for="Name">Navn:</label>
+    <input type="text" name="Name" placeholder="Skriv navn på forlystelse" autofocus /><br />
+    <!-- Description -->
+    <label for="Description">Beskrivelse:</label>
+    <input type="text" name="Description" placeholder="Skriv beskrivelse" /><br />
+    <!-- Category -->
+    <label for="SelectedCategoryId">Kategori:</label>
+    <select name="SelectedCategoryId">
+        @{
+            foreach (RideCategory cat in Model.Category)
+            {
+                <option value="@cat.Id">@cat.Name</option>
+            }
+        }
+    </select><br />
+    <input type="submit" value="Lav raport" />
+</form>
