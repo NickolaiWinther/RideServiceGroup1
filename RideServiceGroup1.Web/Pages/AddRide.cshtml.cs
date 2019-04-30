@@ -40,6 +40,7 @@ namespace RideServiceGroup1.Web.Pages
                 };
                 rideRepository.Insert(ride);
             }
+            Response.Redirect("/");
         }
 
         public void OnGet()

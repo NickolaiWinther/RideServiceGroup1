@@ -18,6 +18,7 @@ namespace RideServiceGroup1.Entities
         }
         public List<Report> Reports { get; set; } 
         public List<Report> ReportsOrderdByDate { get => Reports.OrderByDescending(o => o.ReportTime).ToList(); }
+        
         public string Url
         {
             get => $"/Img/{Name.ToLower()}.jpg";

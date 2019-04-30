@@ -43,7 +43,16 @@
                 <p>Kategori: @Model.Ride.Category.Name</p>
                 <p>Beskrivelse: @Model.Ride.Description</p>
                 <p>Nedlukninger: @Model.Ride.NumbersOfShutdowns()</p>
-                <p>Dage siden sidste nedlukkelse: @Model.Ride.DaysSinceLastShutdown()</p>
+                @{
+                    if (Model.Ride.NumbersOfShutdowns() == 0)
+                    {
+                        <p>Dage siden sidste nedlukkelse: Ingen</p>
+                    }
+                    else
+                    {
+                        <p>Dage siden sidste nedlukkelse: @Model.Ride.DaysSinceLastShutdown()</p>
+                    }
+                }
             </div>
         </div>
         @if (Model.Ride.Reports.Count > 0)
