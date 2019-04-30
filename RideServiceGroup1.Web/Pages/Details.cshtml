@@ -15,10 +15,10 @@
             @Html.AntiForgeryToken()
             <!-- Write note -->
             <label for="Notes">Noter:</label>
-            <input type="text" name="Notes" placeholder="Skrive noter" autofocus /><br />
+            <input type="text" name="Notes" placeholder="Skriv noter" autofocus /><br />
             <!-- Report time -->
             <label for="ReportTime">Tid:</label>
-            <input type="datetime" name="ReportTime" value="@DateTime.Now" readonly autofocus /><br />
+            <input type="datetime" name="ReportTime" value="@DateTime.Now" readonly /><br />
             <!-- Select status-->
             <label for="Status">Status:</label>
             <select name="Status">
@@ -34,7 +34,7 @@
     </article>
 </div>
 
-<h1>Detailjer for: @Model.Ride.Name ID: @Model.Ride.Id</h1>
+<h1>Detailjer for: @Model.Ride.Name</h1>
 <div class="wrapper">
     <article>
         <div class="detailWrapper">

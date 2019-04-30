@@ -15,14 +15,32 @@ namespace RideServiceGroup1.Web.Pages
         [BindProperty]
         [Display(Name = "Navn")]
         public string CategoryName { get; set; }
+
         [BindProperty]
         [Display(Name = "Beskrivelse")]
         public string CategoryDescription { get; set; }
+
+        [BindProperty(SupportsGet = true)]
+        [Display(Name = "Søg")]
+        public string SearchInput { get; set; }
+
         public List<RideCategory> Categories { get; set; } = new List<RideCategory>();
+
         public void OnGet()
         {
             CategoryRepository categoryRepository = new CategoryRepository();
             Categories = categoryRepository.GetAll();
+            if (SearchInput != null)
+            {
+                foreach (RideCategory rideCategory in Categories.ToList())
+                {
+                    if (!rideCategory.Name.ToLower().Contains(SearchInput.ToLower()))
+                    {
+                        Categories.Remove(rideCategory);
+                    }
+                }
+            }
+            
         }
         public void OnPost()
         {

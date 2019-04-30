@@ -174,20 +174,30 @@ section .wrapper {
 
                 section .wrapper article .reportWrapper .report p {
                     color: white;
-                }
+    
+                    }
+.forms{
+    display: flex;
+    justify-content: space-between;
+}
 .categoryWrapper {
     display: flex;
     margin: 5vw;
     flex-wrap: wrap;
 }
-.categoryWrapper article{
+.categoryWrapper a{
     width: 30%;
     margin: 1%;
     background: #404040;
     border-radius: 20px;
     text-align: center;
+    text-decoration: none;
+    transition: ease .3s;
 }
-.categoryWrapper article h3 {
+.categoryWrapper a:hover{
+    transform: scale(1.08);
+}
+.categoryWrapper a h3 {
     margin: 20px;
 }
 

@@ -9,7 +9,9 @@
 }
 
 <h2>Kategorier</h2>
+<div class="forms">
 <form method="post">
+    
     @Html.AntiForgeryToken()
     <label asp-for="CategoryName"></label>
     <input asp-for="CategoryName" /><br />
@@ -19,12 +21,20 @@
 
     <input type="submit" />
 </form>
+
+<form method="get">
+    <label asp-for="SearchInput"></label>
+    <input asp-for="SearchInput" /><br />
+
+    <input type="submit" />
+</form>
+</div>
 <div class="categoryWrapper">
     @foreach (RideCategory rideCategory in Model.Categories)
     {
-        <article>
+        <a href="#">
             <h3>@rideCategory.Name</h3>
             <p>@rideCategory.Description</p>
-        </article>
+        </a>
     }
 </div>
