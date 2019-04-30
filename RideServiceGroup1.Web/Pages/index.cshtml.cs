@@ -13,8 +13,10 @@ namespace RideServiceGroup1.Web.Pages
     {
         [BindProperty(SupportsGet = true)]
         public string SearchName { get; set; }
+
         [BindProperty(SupportsGet = true)]
         public int SearchCat { get; set; }
+
         [BindProperty(SupportsGet = true)]
         public Status Status { get; set; }
 

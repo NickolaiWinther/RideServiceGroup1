@@ -1,0 +1,21 @@
+﻿@page
+@model RideServiceGroup1.Web.Pages.CategoriesModel
+@using RideServiceGroup1.Entities;
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@{
+    ViewData["Title"] = "Kategorier";
+    Layout = "~/Pages/Shared/_Layout.cshtml";
+
+}
+
+<h2>Kategorier</h2>
+
+<div class="categoryWrapper">
+    @foreach (RideCategory rideCategory in Model.Categories)
+    {
+        <article>
+            <h3>@rideCategory.Name</h3>
+            <p>@rideCategory.Description</p>
+        </article>
+    }
+</div>

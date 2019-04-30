@@ -175,6 +175,21 @@ section .wrapper {
                 section .wrapper article .reportWrapper .report p {
                     color: white;
                 }
+.categoryWrapper {
+    display: flex;
+    margin: 5vw;
+    flex-wrap: wrap;
+}
+.categoryWrapper article{
+    width: 30%;
+    margin: 1%;
+    background: #404040;
+    border-radius: 20px;
+    text-align: center;
+}
+.categoryWrapper article h3 {
+    margin: 20px;
+}
 
 @media screen and (max-width: 900px) {
     .classic .wrapper {
