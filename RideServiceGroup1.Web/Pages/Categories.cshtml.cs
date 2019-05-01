@@ -24,27 +24,51 @@ namespace RideServiceGroup1.Web.Pages
         [Display(Name = "Søg")]
         public string SearchInput { get; set; }
 
+        public string ErrorMsg { get; set; }
         public List<RideCategory> Categories { get; set; } = new List<RideCategory>();
 
         public void OnGet()
         {
             CategoryRepository categoryRepository = new CategoryRepository();
-            Categories = categoryRepository.GetAll();
+            //Categories = categoryRepository.GetAll();
             if (SearchInput != null)
             {
-                foreach (RideCategory rideCategory in Categories.ToList())
-                {
-                    if (!rideCategory.Name.ToLower().Contains(SearchInput.ToLower()))
-                    {
-                        Categories.Remove(rideCategory);
-                    }
-                }
+                Categories = categoryRepository.GetAllWithName(SearchInput);
+                //foreach (RideCategory rideCategory in Categories.ToList())
+                //{
+                //    if (!rideCategory.Name.ToLower().Contains(SearchInput.ToLower()))
+                //    {
+                //        Categories.Remove(rideCategory);
+                //    }
+                //}
+            }
+            else
+            {
+                Categories = categoryRepository.GetAll();
             }
             
         }
         public void OnPost()
         {
             CategoryRepository categoryRepository = new CategoryRepository();
+            Categories = categoryRepository.GetAll();
+
+            bool categoryExists = false;
+            foreach (RideCategory category in Categories)
+            {
+                if (CategoryName.ToLower() == category.Name.ToLower())
+                {
+                    categoryExists = true;
+                    break;
+                }
+            }
+
+            if (categoryExists)
+            {
+                ErrorMsg = "Kategorien findes allerede";
+            }
+            else
+            {
             RideCategory rideCategory = new RideCategory()
             {
                 Name = CategoryName,
@@ -52,7 +76,12 @@ namespace RideServiceGroup1.Web.Pages
             };
             categoryRepository.Insert(rideCategory);
             Categories = categoryRepository.GetAll();
+            }
+        }
 
+        public string GetUrl(int id)
+        {
+            return $"index?SearchCat={id}";
         }
     }
 }

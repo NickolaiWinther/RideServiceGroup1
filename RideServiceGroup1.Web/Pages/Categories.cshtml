@@ -1,5 +1,5 @@
 ﻿@page
-@model RideServiceGroup1.Web.Pages.CategoriesModel
+@model RideServiceGroup1.Web.Pages.CategoriesModel;
 @using RideServiceGroup1.Entities;
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 @{
@@ -8,31 +8,33 @@
 
 }
 
-<h2>Kategorier</h2>
+<h3>Kategorier</h3>
 <div class="forms">
-<form method="post">
-    
-    @Html.AntiForgeryToken()
-    <label asp-for="CategoryName"></label>
-    <input asp-for="CategoryName" /><br />
+    <form method="get">
+        <h4>Søg efter kategori</h4>
+        <label asp-for="SearchInput"></label>
+        <input asp-for="SearchInput" /><br />
 
-    <label asp-for="CategoryDescription"></label>
-    <input asp-for="CategoryDescription" /><br />
+        <input type="submit" />
+    </form>
 
-    <input type="submit" />
-</form>
+    <form method="post">
+        <h4>Opret kategori</h4>
+        <p>@Model.ErrorMsg</p>
+        @Html.AntiForgeryToken()
+        <label asp-for="CategoryName"></label>
+        <input asp-for="CategoryName" required/><br />
 
-<form method="get">
-    <label asp-for="SearchInput"></label>
-    <input asp-for="SearchInput" /><br />
+        <label asp-for="CategoryDescription"></label>
+        <input asp-for="CategoryDescription" required/><br />
 
-    <input type="submit" />
-</form>
+        <input type="submit" />
+    </form>
 </div>
 <div class="categoryWrapper">
     @foreach (RideCategory rideCategory in Model.Categories)
     {
-        <a href="#">
+        <a href="@Model.GetUrl(rideCategory.Id)">
             <h3>@rideCategory.Name</h3>
             <p>@rideCategory.Description</p>
         </a>

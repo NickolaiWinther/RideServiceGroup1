@@ -75,6 +75,13 @@ p, a {
 
 form{
     margin: 20px;
+    background: #404040;
+    border-radius: 20px;
+    padding: 20px;
+    width: auto;
+}
+form h4{
+    margin: 15px 0;
 }
 form label {
     width: 90px;
@@ -179,6 +186,9 @@ section .wrapper {
 .forms{
     display: flex;
     justify-content: space-between;
+}
+.forms form {
+    align-self: flex-start;
 }
 .categoryWrapper {
     display: flex;

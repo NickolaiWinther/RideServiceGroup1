@@ -31,7 +31,7 @@ namespace RideServiceGroup1.Web.Pages
                 Report report = new Report()
                 {
                     Notes = Notes,
-                    ReportTime = ReportTime,
+                    ReportTime = DateTime.Now,
                     Status = Status,
                     Ride = Ride
                 };

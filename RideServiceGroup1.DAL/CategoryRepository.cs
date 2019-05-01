@@ -36,6 +36,13 @@ namespace RideServiceGroup1.DAL
             return HandleData(categoriesTable).FirstOrDefault();
         }
 
+        public List<RideCategory> GetAllWithName(string searchInput)
+        {
+            string sql = $"SELECT * FROM RideCategories WHERE Name LIKE '%{searchInput}%'";
+            DataTable categoriesTable = ExecuteQuery(sql);
+            return HandleData(categoriesTable);
+        }
+
         public int Insert(RideCategory category)
         {
             return ExecuteNonQuery($"INSERT INTO RideCategories VALUES('{category.Name}', '{category.Description}')");
