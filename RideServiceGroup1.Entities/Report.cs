@@ -11,5 +11,10 @@ namespace RideServiceGroup1.Entities
         public Status Status { get; set; }
         public DateTime ReportTime { get; set; }
         public string Notes { get; set; }
+
+        public Report()
+        {
+
+        }
     }
 }

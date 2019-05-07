@@ -21,6 +21,12 @@
         <img src="@Model.MostRecentlyBroken.Url" alt="@Model.MostRecentlyBroken.Name" />
     </article>
 
+    <article>
+        <h3>Gået i stykker færrest gange:</h3>
+        <h4>@Model.LeastBrokenRide.Name, @Model.LeastBrokenRide.NumbersOfShutdowns() gange</h4>
+        <img src="@Model.LeastBrokenRide.Url" alt="@Model.LeastBrokenRide.Name" />
+    </article>
+
 
 
 </div>

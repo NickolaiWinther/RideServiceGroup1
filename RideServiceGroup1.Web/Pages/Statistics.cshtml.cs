@@ -13,27 +13,49 @@ namespace RideServiceGroup1.Web.Pages
     {
         public StatisticsModel()
         {
-            Rides = rideRepository.GetAll();
-            Reports = reportRepository.GetAll();
+            Rides = RideRepository.GetAll();
+            Reports = ReportRepository.GetAll();
         }
         public List<Ride> Rides { get; set; }
         public List<Report> Reports { get; set; }
         public int MyProperty { get; set; }
-        public ReportRepository reportRepository { get; set; } = new ReportRepository();
-        RideRepository rideRepository { get; set; } = new RideRepository();
+        public ReportRepository ReportRepository { get; set; } = new ReportRepository();
+        public RideRepository RideRepository { get; set; } = new RideRepository();
 
         public Ride MostBrokenRide
         {
-            get => Rides.Where(x => x.NumbersOfShutdowns() == Rides.Max(y => y.NumbersOfShutdowns())).First();
+            get
+            {
+                Ride mostBrokenRide = Rides[0];
+                foreach (Ride ride in Rides)
+                    if (ride.NumbersOfShutdowns() > mostBrokenRide.NumbersOfShutdowns())
+                        mostBrokenRide = ride;
+                 
+                return mostBrokenRide;
+            }
+        }
+
+        public Ride LeastBrokenRide
+        {
+            get
+            {
+                Ride leastBrokenRide = Rides[0];
+                foreach (Ride ride in Rides)
+                {
+                    if (ride.NumbersOfShutdowns() < leastBrokenRide.NumbersOfShutdowns())
+                    {
+                        leastBrokenRide = ride;
+                    }
+                }
+                return leastBrokenRide;
+            }
         }
 
         public Ride MostRecentlyBroken
         {
             get
             {
-                Ride ride = rideRepository.GetLatestBrokenRide();
-
-
+                Ride ride = RideRepository.GetLatestBrokenRide();
                 return ride;
             }
         }

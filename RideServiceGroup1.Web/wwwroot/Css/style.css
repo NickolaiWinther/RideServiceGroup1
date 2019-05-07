@@ -230,12 +230,12 @@ section .wrapper {
 }
 
     .statisticsWrapper article {
-        width: 30%;
+        width: 28%;
         margin: 1%;
         background: #404040;
         border-radius: 20px;
         text-align: center;
-        padding: 20px;
+        padding: 1.5%;
         align-self: flex-start;
     }
 
