@@ -1,12 +1,8 @@
 ﻿@page "{id:int}"
-@using RideServiceGroup1.DAL;
-@using RideServiceGroup1.Entities;
-@using RideServiceGroup1.Entities.Utility;
 @model RideServiceGroup1.Web.Pages.DetailsModel
 @{
     ViewData["Title"] = "Details";
     Layout = "~/Pages/Shared/_Layout.cshtml";
-
 }
 
 <div class="forms">
@@ -40,7 +36,7 @@
                 <p>Beskrivelse: @Model.Ride.Description</p>
                 <p>Nedlukninger: @Model.Ride.NumbersOfShutdowns()</p>
                 @{
-                    if (Model.Ride.NumbersOfShutdowns() == 0)
+                    if (Model.Ride.NumbersOfShutdowns() == -1)
                     {
                         <p>Dage siden sidste nedlukkelse: Ingen</p>
                     }
@@ -49,6 +45,7 @@
                         <p>Dage siden sidste nedlukkelse: @Model.Ride.DaysSinceLastShutdown()</p>
                     }
                 }
+                <p><a asp-page="AddRide" asp-page-handler="Edit">Rediger forlystalse</a></p>
             </div>
         </div>
         @if (Model.Ride.Reports.Count > 0)

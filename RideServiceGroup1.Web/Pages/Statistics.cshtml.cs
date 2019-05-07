@@ -11,23 +11,35 @@ namespace RideServiceGroup1.Web.Pages
 {
     public class StatisticsModel : PageModel
     {
+        public StatisticsModel()
+        {
+            Rides = rideRepository.GetAll();
+            Reports = reportRepository.GetAll();
+        }
         public List<Ride> Rides { get; set; }
+        public List<Report> Reports { get; set; }
         public int MyProperty { get; set; }
+        public ReportRepository reportRepository { get; set; } = new ReportRepository();
+        RideRepository rideRepository { get; set; } = new RideRepository();
 
         public Ride MostBrokenRide
         {
+            get => Rides.Where(x => x.NumbersOfShutdowns() == Rides.Max(y => y.NumbersOfShutdowns())).First();
+        }
+
+        public Ride MostRecentlyBroken
+        {
             get
             {
-                var maxZ = Rides.Max(x => x.NumbersOfShutdowns());
-                return Rides.Where(x => x.NumbersOfShutdowns() == maxZ).First();
+                Ride ride = rideRepository.GetLatestBrokenRide();
+
+
+                return ride;
             }
         }
 
         public void OnGet()
         {
-            RideRepository rideRepository = new RideRepository();
-            CategoryRepository categoryRepository = new CategoryRepository();
-            Rides = rideRepository.GetAll();
             
         }
     }

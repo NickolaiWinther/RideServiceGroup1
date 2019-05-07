@@ -42,6 +42,12 @@ namespace RideServiceGroup1.DAL
             return HandleData(rideTable).FirstOrDefault();
         }
 
+        public Ride GetLatestBrokenRide()
+        {
+            DataTable rideTable = ExecuteQuery($"SELECT TOP(1) * FROM Rides JOIN Reports ON Rides.RideId = Reports.RideId WHERE Status = 2 ORDER BY ReportTime DESC");
+            return HandleData(rideTable).FirstOrDefault();
+        }
+
         public int Insert (Ride ride)
         {
             return ExecuteNonQuery($"INSERT INTO Rides VALUES('{ride.Name}', '{ride.Description}', {ride.Category.Id})");
@@ -52,9 +58,10 @@ namespace RideServiceGroup1.DAL
             throw new NotImplementedException();
         }
 
-        public int Update()
+        public int Update(Ride ride)
         {
-            throw new NotImplementedException();
+            return ExecuteNonQuery($"UPDATE Rides SET Name = '{ride.Name}', Description = '{ride.Description}', CategoryId = '{ride.Category.Id}' WHERE RideId = '{ride.Id}'");
         }
+
     }
 }

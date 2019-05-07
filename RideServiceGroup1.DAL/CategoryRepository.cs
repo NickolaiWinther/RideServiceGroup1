@@ -38,7 +38,7 @@ namespace RideServiceGroup1.DAL
 
         public List<RideCategory> GetAllWithName(string searchInput)
         {
-            string sql = $"SELECT * FROM RideCategories WHERE Name LIKE '%{searchInput}%'";
+            string sql = $"SELECT * FROM RideCategories WHERE Name LIKE '%{searchInput}%' OR Description LIKE '%{searchInput}%'";
             DataTable categoriesTable = ExecuteQuery(sql);
             return HandleData(categoriesTable);
         }

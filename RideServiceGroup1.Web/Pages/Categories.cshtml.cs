@@ -69,13 +69,21 @@ namespace RideServiceGroup1.Web.Pages
             }
             else
             {
-            RideCategory rideCategory = new RideCategory()
-            {
-                Name = CategoryName,
-                Description = CategoryDescription
-            };
-            categoryRepository.Insert(rideCategory);
-            Categories = categoryRepository.GetAll();
+                try
+                {
+                    RideCategory rideCategory = new RideCategory()
+                    {
+                        Name = CategoryName,
+                        Description = CategoryDescription
+                    };
+                    categoryRepository.Insert(rideCategory);
+                    Categories = categoryRepository.GetAll();
+                }
+                catch (ArgumentException)
+                {
+                    ErrorMsg = "Du skal udfylde både navn og beskrivelse.";
+                }
+                
             }
         }
 

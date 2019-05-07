@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RideServiceGroup1.DAL", "Ri
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RideServiceGroup1.Web", "RideServiceGroup1.Web\RideServiceGroup1.Web.csproj", "{9772CB60-9CA3-45BF-8FDD-1E80215ABD09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RideServiceGroup1.ManualTest", "RideServiceGroup1.ManualTest\RideServiceGroup1.ManualTest.csproj", "{4CA77EA0-3FCA-4DBB-9C1F-984AFA0F824A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RideServiceGroup1.ManualTest", "RideServiceGroup1.ManualTest\RideServiceGroup1.ManualTest.csproj", "{4CA77EA0-3FCA-4DBB-9C1F-984AFA0F824A}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RideServiceGroup1.EntitiesTest", "RideServiceGroup1.EntitiesTest\RideServiceGroup1.EntitiesTest.csproj", "{3DA7E8F1-6C6B-4358-8B74-57C3A195CBE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{4CA77EA0-3FCA-4DBB-9C1F-984AFA0F824A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CA77EA0-3FCA-4DBB-9C1F-984AFA0F824A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CA77EA0-3FCA-4DBB-9C1F-984AFA0F824A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3DA7E8F1-6C6B-4358-8B74-57C3A195CBE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3DA7E8F1-6C6B-4358-8B74-57C3A195CBE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3DA7E8F1-6C6B-4358-8B74-57C3A195CBE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3DA7E8F1-6C6B-4358-8B74-57C3A195CBE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

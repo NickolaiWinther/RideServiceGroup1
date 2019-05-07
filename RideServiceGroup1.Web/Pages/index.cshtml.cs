@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using RideServiceGroup1.DAL;
+using RideServiceGroup1.DAL.Services;
 using RideServiceGroup1.Entities;
 
 namespace RideServiceGroup1.Web.Pages
@@ -22,6 +23,8 @@ namespace RideServiceGroup1.Web.Pages
 
         public List<Ride> Rides { get; set; }
         public List<RideCategory> Categories { get; set; }
+        public WeatherInfo WeatherInfo { get; set; }
+
 
         public void OnGet()
         {
@@ -38,6 +41,10 @@ namespace RideServiceGroup1.Web.Pages
 
             if (Status != Status.Undefined)
                 Rides.RemoveAll(r => r.Status != Status);
+
+            WeatherService weatherService = new WeatherService();
+            WeatherInfo = weatherService.GetWeatherFor("aalborg", "metric");
+            
         }
     }
 }

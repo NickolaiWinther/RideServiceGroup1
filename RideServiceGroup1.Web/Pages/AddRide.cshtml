@@ -1,34 +1,41 @@
-﻿@page
+﻿@page "{id:int?}"
 @model RideServiceGroup1.Web.Pages.AddRideModel
-@using RideServiceGroup1.Entities
-@using RideServiceGroup1.Entities.Utility
 @{
     ViewData["Title"] = "Tilføj forlystelse";
     Layout = "~/Pages/Shared/_Layout.cshtml";
 }
 
-<h1>HUSK!: Billede skal være placeret i "Img" og have det samme navn som forlystelsen du opretter</h1>
+<h2>HUSK!: Billede skal være placeret i "Img" og have det samme navn som forlystelsen du opretter</h2>
 <p>Kontakt en administrator for at tilføje et billede</p>
 
 <div class="forms">
-    <form method="post">
+    <form method="post" asp-page-handler="@Model.PageHandler">
         @Html.AntiForgeryToken()
-        <!-- Write name -->
-        <label for="Name">Navn:</label>
-        <input type="text" name="Name" placeholder="Skriv navn på forlystelse" autofocus /><br />
-        <!-- Description -->
-        <label for="Description">Beskrivelse:</label>
-        <input type="text" name="Description" placeholder="Skriv beskrivelse" /><br />
-        <!-- Category -->
-        <label for="SelectedCategoryId">Kategori:</label>
-        <select name="SelectedCategoryId">
-            @{
-                foreach (RideCategory cat in Model.Category)
+
+        <h4>@Model.RideAction</h4>
+        <input asp-for="Ride.Id" hidden />
+        <label asp-for="Ride.Name"></label>
+        <input asp-for="Ride.Name" placeholder="Skriv navn på forlystelse" autofocus value="@Model.Ride.Name" /><br />
+        
+        <label asp-for="Ride.Description"></label>
+        <input asp-for="Ride.Description" placeholder="Skriv beskrivelse" value="@Model.Ride.Description" /><br />
+
+        <label asp-for="Ride.Category"></label>
+
+        <select asp-for="Ride.Category.Id">
+            @foreach (RideCategory cat in Model.Categories)
+            {
+                if (Model.Ride?.Category?.Name == cat.Name)
+                {
+                    <option value="@cat.Id" selected>@cat.Name</option>
+                }
+                else
                 {
                     <option value="@cat.Id">@cat.Name</option>
                 }
+
             }
         </select><br />
-        <input type="submit" value="Tilføj forlystelse" />
+        <input type="submit" value="@Model.RideAction" />
     </form>
 </div>

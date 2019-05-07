@@ -11,42 +11,48 @@ namespace RideServiceGroup1.Web.Pages
 {
     public class AddRideModel : PageModel
     {
-        [BindProperty(SupportsGet = true)]
-        public string Name { get; set; }
-
-        [BindProperty(SupportsGet = true)]
-        public string Description { get; set; }
-
-        [BindProperty(SupportsGet = true)]
-        public List<RideCategory> Category { get; set; }
+        [BindProperty]
+        public Ride Ride { get; set; } = new Ride();
+        
+        public AddRideModel()
+        {
+            CategoryRepository categoryRepository = new CategoryRepository();
+            Categories = categoryRepository.GetAll();
+        }
+        public List<RideCategory> Categories { get; set; }
 
         public RideCategory SelectedCategory { get; set; }
 
-        [BindProperty(SupportsGet = true)]
-        public int SelectedCategoryId { get; set; }
+        public string RideAction { get; set; } = "Tilføj forlystelse";
+        public string EditCategory { get; set; } = "";
+
+        public string PageHandler { get; set; } = "";
+
 
         public void OnPost()
         {
             CategoryRepository categoryRepository = new CategoryRepository();
             RideRepository rideRepository = new RideRepository();
+            rideRepository.Insert(Ride);
             
-            if (Name != string.Empty && Name != null)
-            {
-                Ride ride = new Ride()
-                {
-                    Name = Name,
-                    Description = Description,
-                    Category = categoryRepository.GetById(SelectedCategoryId),
-                };
-                rideRepository.Insert(ride);
-            }
             Response.Redirect("/");
         }
 
         public void OnGet()
         {
-            CategoryRepository categoryRepository = new CategoryRepository();
-            Category = categoryRepository.GetAll();
+            
+        }
+        public void OnGetEdit(int id)
+        {
+            RideRepository rideRepository = new RideRepository();
+            Ride = rideRepository.GetById(id);
+            RideAction = "Redigér forlystelse";
+            PageHandler = "Edit";
+        }
+        public void OnPostEdit()
+        {
+            RideRepository rideRepository = new RideRepository();
+            rideRepository.Update(Ride);
         }
     }
 }
